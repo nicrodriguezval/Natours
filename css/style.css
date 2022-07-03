@@ -1,10 +1,9 @@
 /*
-COLORS:
+  COLORS:
 
-Light green: #7ed56f
-Medium green: #55c57a
-Dark green: #28b485
-
+  Light green: #7ed56f
+  Medium green: #55c57a
+  Dark green: #28b485
 */
 
 * {
@@ -57,6 +56,7 @@ body {
 .heading-primary {
   color: #fff;
   text-transform: uppercase;
+  backface-visibility: hidden; /* it deletes the shaking that occurs at the end of the animation */
 }
 
 .heading-primary-main {
@@ -64,6 +64,16 @@ body {
   font-size: 60px;
   font-weight: 400;
   letter-spacing: 35px;
+
+  /* animation section */
+  animation: moveInLeft 1s ease-out; /* it's a shorter form */
+  /*
+    animation-name: moveInLeft; the animation define in the @keyframe at-rule
+    animation-duration: 1s; the duration the animation will have
+    animation-timing-function: ease-out; the type of animation
+    animation-delay: 3s; there's a delay befero start the animation
+    animation-iteration-count: 3; how many times the animation will be made
+  */
 }
 
 .heading-primary-sub {
@@ -71,4 +81,39 @@ body {
   font-size: 20px;
   font-weight: 700;
   letter-spacing: 17.3px;
+
+  /* animation section */
+  animation: moveInRight 1s ease-out;
+}
+
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+
+  80% {
+    transform: translateX(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+
+  80% {
+    transform: translateX(-10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
