@@ -125,24 +125,68 @@ body {
   padding: 15px 40px;
   display: inline-block;
   border-radius: 100px;
-  transition: all .2s; /* take the animation back to its original position */
+  transition: all 0.2s; /* take the animation back to its original position */
+  position: relative;
 }
 
-.btn:link, .btn:visited { /* :link when the <a> hasn't been visited and :visited when it has */
+.btn:link,
+.btn:visited {
+  /* :link when the <a> hasn't been visited and :visited when it has */
   text-decoration: none;
 }
 
-.btn:hover { /* :hover is activated when the cursor hovers the element */
+.btn:hover {
+  /* :hover is activated when the cursor hovers the element */
   transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, .2); /* x y blur-radius color */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* x y blur-radius color */
 }
 
-.btn:active { /* :active happens when there's an intecaction with the element, in this case the <a> button */
+.btn:active {
+  /* :active happens when there's an intecaction with the element, in this case the <a> button */
   transform: translateY(-1px);
-  box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
 .btn-white {
   background-color: #fff;
   color: #777;
+}
+
+.btn::after {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all 0.4s;
+}
+
+.btn:hover::after {
+  transform: scale(1.3, 1.6);
+  opacity: 0;
+}
+
+.btn-white::after {
+  background-color: #fff;
+}
+
+.btn-animated {
+  animation: moveInBottom 0.5s ease-out 0.75s;
+  animation-fill-mode: backwards;
+}
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
